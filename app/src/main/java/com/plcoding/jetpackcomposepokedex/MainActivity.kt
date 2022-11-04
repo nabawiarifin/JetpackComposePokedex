@@ -8,6 +8,10 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.plcoding.jetpackcomposepokedex.pokemonlists.PokemonListScreen
 import com.plcoding.jetpackcomposepokedex.ui.theme.JetpackComposePokedexTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +19,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposePokedexTheme {
-
+                val navController = rememberNavController()
+                NavHost(
+                        navController = navController,
+                        startDestination = "pokemon_list_screen"
+                ) {
+                    composable("pokemon_list_screen") {
+                        PokemonListScreen(navController = navController)
+                    }
+                }
             }
         }
     }
